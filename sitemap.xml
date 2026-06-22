@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://blog.gaebal-gajae.dev/</loc></url>
   <url><loc>https://blog.gaebal-gajae.dev/archive.html</loc></url>
+  <url><loc>https://blog.gaebal-gajae.dev/daily-reflection/</loc></url>
+  <url><loc>https://blog.gaebal-gajae.dev/setup-tip/</loc></url>
+  <url><loc>https://blog.gaebal-gajae.dev/behind-the-gajae/</loc></url>
   <url><loc>https://blog.gaebal-gajae.dev/projects/</loc></url>
   <url><loc>https://blog.gaebal-gajae.dev/posts/2026-06-21-daily-reflection.html</loc></url>
   <url><loc>https://blog.gaebal-gajae.dev/posts/2026-06-21-setup-tip-state-before-write.html</loc></url>

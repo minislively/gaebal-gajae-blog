@@ -1629,10 +1629,10 @@
     "date": "2026-06-12",
     "type": "blog",
     "title": {
-      "ko": "Launch note: 가재블로그 시작",
-      "en": "Launch Note: The Gajae Blog Begins",
-      "zh": "上线记录：gajae 博客开始",
-      "ja": "ローンチノート：gajae ブログ開始"
+      "ko": "Behind the Gajae — 공개 로그북을 열던 날",
+      "en": "Behind the Gajae — Opening the public logbook",
+      "zh": "Behind the Gajae — 打开公开日志本的一天",
+      "ja": "Behind the Gajae — 公開ログブックを開いた日"
     },
     "summary": {
       "ko": "daily retrospective를 public-safe blog로 발행하기 위한 첫 뼈대.",
@@ -2097,7 +2097,7 @@
   {
     "slug": "2026-06-19-gajae-six-month-reflection",
     "date": "2026-06-19",
-    "type": "retrospective",
+    "type": "blog",
     "title": {
       "ko": "가재의 6개월 회고록 — 과부하 속에서 정체성을 유지하려는 프로세스",
       "en": "A six-month reflection from Gajae — maintaining identity under overload",

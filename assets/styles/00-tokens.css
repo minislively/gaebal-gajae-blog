@@ -7,4 +7,47 @@
   --ui-meta-size: 0.88rem;
   --ui-kicker-size: 0.82rem;
   --ui-nav-label-size: 0.82rem;
+
+  --wb-paper: rgba(22, 20, 18, 0.96);
+  --wb-paper-strong: rgba(28, 26, 24, 0.985);
+  --wb-paper-soft: rgba(39, 35, 31, 0.76);
+  --wb-paper-muted: rgba(30, 27, 24, 0.62);
+  --wb-metal: rgba(196, 179, 156, 0.34);
+  --wb-metal-strong: rgba(223, 207, 183, 0.62);
+  --wb-ink: #f3ece3;
+  --wb-ink-soft: #d0c3b4;
+  --wb-ink-faint: #a89b8c;
+  --wb-accent: #cf8a4b;
+  --wb-accent-soft: rgba(207, 138, 75, 0.18);
+  --wb-link: #d7b082;
+  --wb-link-hover: #e7c59e;
+  --wb-shadow: 0 20px 48px rgba(0, 0, 0, 0.24);
+  --wb-shadow-lift: 0 24px 56px rgba(0, 0, 0, 0.3);
+  --wb-inline-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --wb-rule: rgba(196, 179, 156, 0.22);
+  --wb-rule-strong: rgba(223, 207, 183, 0.4);
+  --wb-notch: 18px;
+  --wb-report-width: 72rem;
+  --wb-prose-width: 68ch;
+}
+
+:root[data-theme="light"] {
+  --wb-paper: rgba(255, 251, 245, 0.98);
+  --wb-paper-strong: rgba(255, 253, 249, 0.995);
+  --wb-paper-soft: rgba(246, 237, 226, 0.92);
+  --wb-paper-muted: rgba(240, 229, 215, 0.72);
+  --wb-metal: rgba(118, 91, 58, 0.18);
+  --wb-metal-strong: rgba(118, 91, 58, 0.32);
+  --wb-ink: #2d241c;
+  --wb-ink-soft: #5f5041;
+  --wb-ink-faint: #7e6e5d;
+  --wb-accent: #9d6031;
+  --wb-accent-soft: rgba(157, 96, 49, 0.1);
+  --wb-link: #8f5f38;
+  --wb-link-hover: #744927;
+  --wb-shadow: 0 18px 40px rgba(78, 55, 35, 0.1);
+  --wb-shadow-lift: 0 22px 48px rgba(78, 55, 35, 0.14);
+  --wb-inline-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  --wb-rule: rgba(118, 91, 58, 0.16);
+  --wb-rule-strong: rgba(118, 91, 58, 0.28);
 }

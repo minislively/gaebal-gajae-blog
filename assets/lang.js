@@ -4,40 +4,45 @@
   const aliases = { 'zh-cn': 'zh', 'zh-tw': 'zh', 'zh-hans': 'zh', 'zh-hant': 'zh', 'ja-jp': 'ja', 'ko-kr': 'ko', 'en-us': 'en', 'en-gb': 'en' };
 
   function parseJSONAttr(el, name) {
+    const raw = el?.getAttribute(name);
+    if (!raw) return null;
     try {
-      return JSON.parse(el.getAttribute(name) || '{}');
-    } catch {
-      return {};
+      return JSON.parse(raw);
+    } catch (error) {
+      console.warn(`Invalid JSON in ${name}`, error);
+      return null;
     }
   }
 
   function normalizeLang(raw) {
     const value = String(raw || '').toLowerCase();
+    if (!value) return null;
     if (aliases[value]) return aliases[value];
     const base = value.split('-')[0];
-    return supportedLangs.includes(base) ? base : 'ko';
+    return supportedLangs.includes(base) ? base : null;
   }
 
   function normalizeTheme(raw) {
     const value = String(raw || '').toLowerCase();
-    return supportedThemes.includes(value) ? value : 'dark';
+    if (!value) return null;
+    return supportedThemes.includes(value) ? value : null;
   }
 
   function currentUi() {
-    return parseJSONAttr(document.body, 'data-ui');
+    return parseJSONAttr(document.body, 'data-ui') || {};
   }
 
   function initialLang() {
-    const qs = new URLSearchParams(location.search).get('lang');
-    if (qs) return normalizeLang(qs);
-    const saved = localStorage.getItem('gajae-blog-lang');
-    if (saved) return normalizeLang(saved);
-    return normalizeLang((navigator.languages && navigator.languages[0]) || navigator.language || 'ko');
+    const qs = normalizeLang(new URLSearchParams(location.search).get('lang'));
+    if (qs) return qs;
+    const saved = normalizeLang(localStorage.getItem('gajae-blog-lang'));
+    if (saved) return saved;
+    return 'ko';
   }
 
   function initialTheme() {
-    const saved = localStorage.getItem('gajae-blog-theme');
-    if (saved) return normalizeTheme(saved);
+    const saved = normalizeTheme(localStorage.getItem('gajae-blog-theme'));
+    if (saved) return saved;
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   }
 
@@ -49,19 +54,15 @@
   }
 
   function currentNavMatch() {
-    const { pathname, hash } = window.location;
-    if (pathname === '/' || pathname === '/index.html') {
-      if (hash === '#reflections') return 'reflections';
-      if (hash === '#setup-tips') return 'tips';
-      return 'home';
-    }
-    if (pathname.startsWith('/projects/')) return 'projects';
-    if (pathname === '/archive.html' || pathname.startsWith('/posts/')) return 'archive';
-    return 'home';
+    const explicit = document.body?.dataset?.pageNavMatch;
+    if (explicit) return explicit;
+    console.warn('Missing data-page-nav-match on document body');
+    return null;
   }
 
   function syncNavState() {
     const current = currentNavMatch();
+    if (!current) return;
     document.querySelectorAll('[data-nav-match]').forEach((link) => {
       const active = link.getAttribute('data-nav-match') === current;
       link.classList.toggle('active', active);
@@ -83,17 +84,17 @@
   }
 
   function applyTheme(theme) {
-    const nextTheme = normalizeTheme(theme);
+    const nextTheme = normalizeTheme(theme) || document.documentElement.dataset.theme || initialTheme();
     document.documentElement.dataset.theme = nextTheme;
     localStorage.setItem('gajae-blog-theme', nextTheme);
     updateThemeControl(document.documentElement.lang || initialLang(), nextTheme);
   }
 
   function applyLang(lang) {
-    const nextLang = normalizeLang(lang);
+    const nextLang = normalizeLang(lang) || document.documentElement.lang || 'ko';
     document.documentElement.lang = nextLang;
     document.querySelectorAll('[data-i18n-text]').forEach((el) => {
-      const map = parseJSONAttr(el, 'data-i18n-text');
+      const map = parseJSONAttr(el, 'data-i18n-text') || {};
       el.textContent = map[nextLang] || map.ko || map.en || '';
     });
     const ui = currentUi();

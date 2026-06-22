@@ -3,6 +3,25 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-padding-top: 32px;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  line-height: 1.68;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--wb-accent-soft);
+  color: var(--wb-ink);
+}
+
 .i18n {
   white-space: normal;
 }
